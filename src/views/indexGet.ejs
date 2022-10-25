@@ -1,0 +1,28 @@
+<%- include("header"); -%>
+
+<div id="data">
+    <form method="post" action="/">
+        <div>
+            <p>Temp and other data about citys</p>
+        </div>
+
+        <div class="content">     
+            <label for="city">Cidade:</label>  
+            <input type="text" id="city" placeholder="Digite o nome de uma cidade" required>
+        </div>
+
+        <div class="content">
+            <label>Linguagem:</label>
+            <select>
+                <option></option>
+            </select>
+        </div>
+
+        <div class="content">
+            <input type="submit" value="Procurar">
+        </div>
+        
+    </form>
+</div>
+
+<%-include("footer"); -%>
