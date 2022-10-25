@@ -1,0 +1,14 @@
+{
+    "af":{
+        "city": "Stad",
+        "country" : "Land",
+        "longitude" : "lengtegraad",
+        "latitude" : "breedtegraad",
+        "minimum" : "minimum",
+        "maximum" : "maksimum",
+        "humidity" : "humiditeit",
+        "visibility" : "sigbaarheid",
+        "pressure" : "druk",
+        "thermal_sensation" : "termiese_sensasie"
+    }
+}

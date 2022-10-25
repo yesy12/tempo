@@ -1,0 +1,74 @@
+<%- include("../partials/header"); -%>
+
+<div id="principal">    
+    <div id="line1">
+        <div id="info">
+            Cidade: <%- data.data.name %> <br>
+            Pais: <%- data.data.sys.country %>
+        </div>
+        <div id="coords">
+            Longitude: <%- data.data.coord.lon  %><br>
+            Latitude: <%- data.data.coord.lat  %> 
+        </div>
+    </div>
+    <div id="line2">
+        <div id="temp">
+            <%- data.data.main.temp %> 
+            <% if(system == "metric"){  %>
+                ºC
+            <% } if(system == "imperial"){ %>
+                ºF
+            <% } %>
+        </div>
+
+        <div id="information">        
+           
+            <div id="description">
+                <%= data.data.weather[0].description %>
+            </div>
+            
+            <div id="sensacao">
+                Sensação Térmica <%- data.data.main.feels_like %>
+                <% if(system == "metric"){  %>
+                    ºC
+                <% } if(system == "imperial"){ %>
+                    ºF
+                <% } %>
+            </div>
+
+        </div>
+    </div>
+    <div id="line3">
+        <div id="minMax">
+            <div id="min">
+                Minímo <%- data.data.main.temp_min %> 
+                <% if(system == "metric"){  %>
+                    ºC
+                <% } if(system == "imperial"){ %>
+                    ºF
+                <% } %>
+            </div>
+            <div id="max">
+                Maximo <%- data.data.main.temp_max %> 
+                <% if(system == "metric"){  %>
+                    ºC
+                <% } if(system == "imperial"){ %>
+                    ºF
+                <% } %>
+            </div>
+        </div>
+
+        <div id="humidity">
+            Humidade <br> <%- data.data.main.humidity %>%
+        </div>
+        <div id="visibility">
+            Visibilidade <br> <%- data.data.visibility/1000 %> Km
+        </div>
+        <div id="pressure">
+            Pressao <br> <%- data.data.main.pressure %> mb
+        </div>
+    </div>
+
+</div>
+
+<%- include("../partials/footer"); -%>

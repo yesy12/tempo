@@ -1,4 +1,4 @@
-<%- include("header"); -%>
+<%- include("../partials/header"); -%>
 
 <div id="data">
     <form method="post" action="/">
@@ -13,8 +13,14 @@
 
         <div class="content">
             <label>Linguagem:</label>
-            <select>
-                <option></option>
+            <%- include("language"); -%>
+        </div>
+
+        <div class="content">
+            <label>Sistema:</label>
+            <select name="system">
+                <option value="metric">Métrico</option>
+                <option value="imperial">Imperial</option>
             </select>
         </div>
 
@@ -25,4 +31,4 @@
     </form>
 </div>
 
-<%-include("footer"); -%>
+<%-include("../partials/footer"); -%>

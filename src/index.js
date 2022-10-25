@@ -7,6 +7,10 @@ require("dotenv").config();
 const app = express();
 const port = 9000;
 
+//File
+const {readFile} = require("fs");
+
+const language_AcceptFile = __dirname + "/listLanguage.txt";
 
 //public files
 app.use("/static", express.static("public"));
@@ -28,22 +32,48 @@ app.get("/",(req,res)=>{
 })
 
 app.post("/",async(req,res)=>{
-    let {city} = req.body;
+    let {city, language, system} = req.body;
+    let erros = 0;
 
     city = city.replace(" ","%20");
-    
-    const link = `${process.env.link}${city}&appid=${process.env.appid}${process.env.link_parametrs}`;
-    console.log(link);
-    try{
-        const response = await axios.get(link);
+
+    await readFile(language_AcceptFile, "utf8", (err, data)=>{
+        if(err) throw err;
         
-        res.render("indexPost",{
-            data: response.data
+        let languages_accepts = data.split(",");
+        let exists = false;
+
+        languages_accepts.forEach(language_accept =>{
+            if(language_accept == language){
+                exists = true;
+            }
         })
-    }
-    catch{
-        res.send("City not found");
-    }
+        if(exists == false){
+            erros += 1;
+        }
+    })
+
+    if( !(system == "metric") || !(system == "imperial") ){
+        erros += 1;
+    } 
+
+    // link_parametrs = "&units=metric&lang=pt_br"
+    
+    const link = `${process.env.link}${city}&appid=${process.env.appid}&units=${system}&lang=${language}`;
+    console.log(link);
+
+    const response = await axios
+    .get(link)
+    .then((data)=>{
+        res.render("indexPost",{
+            data, system
+        })
+    })
+    .catch((error)=>{
+        console.log(error);
+        res.send("City Not Found");
+    })
+    
 
 })
 
